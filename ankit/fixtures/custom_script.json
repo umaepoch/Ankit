@@ -1,0 +1,20 @@
+[
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Sales Invoice", 
+  "modified": "2016-07-13 16:11:36.892454", 
+  "name": "Sales Invoice-Client", 
+  "script": "cur_frm.add_fetch('sales_order', 'po_no', 'po_no')\ncur_frm.add_fetch('sales_order', 'po_date', 'po_date')\ncur_frm.add_fetch('sales_order', 'schedule_number', 'schedule_number')\n\nfrappe.ui.form.on(\"Sales Invoice\", {\n    validate: function(frm) {\n        // calculate excise amount\n       total_excise_amount = 0\n       if(frm.doc.taxes) {\n         $.each(frm.doc.taxes, function(i, d) {\n             var excise_amount = 0;\n            var tax_desc = d.description;\n             \n             if (tax_desc.indexOf(\"Excise\")) {\n                                                \n              } else  {\n              \n              excise_amount = d.tax_amount;\n              total_excise_amount += flt(d.tax_amount)\n               \n             }\n        });\n       }\n        frappe.model.set_value(frm.doc.doctype, frm.doc.name, \"excise_amount\", total_excise_amount);\n    }\n});\n", 
+  "script_type": "Client"
+ }, 
+ {
+  "docstatus": 0, 
+  "doctype": "Custom Script", 
+  "dt": "Stock Entry", 
+  "modified": "2016-02-16 00:04:41.974827", 
+  "name": "Stock Entry-Client", 
+  "script": "frappe.ui.form.on(\"Stock Entry\", \"address_title\", function(frm, cdt, cdn) {\n\treturn frappe.call({\n\t\tmethod: \"erpnext.utilities.doctype.address.address.get_address_display\",\n\t\targs: {\n\t\t\t\"address_dict\": frm.doc.address_title\n\t\t},\n\t\tcallback: function(r) {\n\t\t\tif(r.message)\n\t\t\t\tfrm.set_value(\"detail_address\", r.message);\n\t\t}\n\t});\n});\n\n\nvar calculate_total_item_weight = function(frm, cdt, cdn) {\n\tvar d = locals[cdt][cdn];\n\tif (d.qty && d.net_weight) {\n\t\td.total_item_weight = flt(d.qty) * flt(d.net_weight);\n\t\trefresh_field('total_item_weight');\n\t}\n\t\n\tcalculate_total_weight(frm);\n}\n\nvar calculate_total_weight = function(frm) {\n\tvar total_weight = frappe.utils.sum(\n\t\t(frm.doc.items || []).map(function(i) { return i.total_item_weight; })\n\t);\n\t\n\tfrm.set_value(\"total_weight\", total_weight);\n}\n\nfrappe.ui.form.on(\"Stock Entry Detail\", \"qty\", function(frm, cdt, cdn) {\n\tcalculate_total_item_weight(frm, cdt, cdn);\n})\n\nfrappe.ui.form.on(\"Stock Entry Detail\", \"net_weight\", function(frm, cdt, cdn) {\n\tcalculate_total_item_weight(frm, cdt, cdn);\n})\n\n", 
+  "script_type": "Client"
+ }
+]

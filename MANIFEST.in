@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include ankit *.css
+recursive-include ankit *.csv
+recursive-include ankit *.html
+recursive-include ankit *.ico
+recursive-include ankit *.js
+recursive-include ankit *.json
+recursive-include ankit *.md
+recursive-include ankit *.png
+recursive-include ankit *.py
+recursive-include ankit *.svg
+recursive-include ankit *.txt
+recursive-exclude ankit *.pyc
