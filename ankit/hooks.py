@@ -13,7 +13,8 @@ app_license = "MIT"
 fixtures = ["Custom Field",
 "Property Setter",
 "Custom Script",
-"Report"]
+"Report",
+"Print Format"]
 
 # Includes in <head>
 # ------------------
