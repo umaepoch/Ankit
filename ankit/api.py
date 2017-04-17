@@ -2,9 +2,16 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.utils import cint, flt, cstr, comma_or
-from erpnext.setup.utils import get_company_currency
 from frappe import _, throw
 
+def get_company_currency(company):
+        currency = frappe.db.get_value("Company", company, "default_currency", cache=True)
+        if not currency:
+                currency = frappe.db.get_default("currency")
+        if not currency:
+                throw(_('Please specify Default Currency in Company Master and Global Defaults'))
+
+        return currency
 
 @frappe.whitelist()
 
