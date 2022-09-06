@@ -7,7 +7,7 @@
  "doctype": "Report",
  "idx": 0,
  "is_standard": "Yes",
- "modified": "2022-09-06 11:02:29.524701",
+ "modified": "2022-09-06 15:04:36.344597",
  "modified_by": "Administrator",
  "module": "Ankit",
  "name": "Profit Loss",
@@ -18,31 +18,10 @@
  "report_type": "Script Report",
  "roles": [
   {
-   "role": "Firm Administrator"
+   "role": "System Manager"
   },
   {
-   "role": "Firm Auditor"
-  },
-  {
-   "role": "Firm Audit Assistant"
-  },
-  {
-   "role": "Firm Junior Audit Assistant"
-  },
-  {
-   "role": "Firm Audit Manager"
-  },
-  {
-   "role": "Firm Supervisor"
-  },
-  {
-   "role": "Firm Client Supervisor"
-  },
-  {
-   "role": "Firm Client User"
-  },
-  {
-   "role": "Firm External Auditor"
+   "role": "Accounts Manager"
   }
  ]
 }
