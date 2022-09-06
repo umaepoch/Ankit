@@ -4,17 +4,12 @@ from . import __version__ as app_version
 
 app_name = "ankit"
 app_title = "Ankit"
-app_publisher = "Epoch"
-app_description = "Ankit customization"
+app_publisher = "jyoti"
+app_description = "For profit and loss report"
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
-app_email = "umag@epochconsulting.in"
+app_email = "jyoti@meritsystems.com"
 app_license = "MIT"
-fixtures = ["Custom Field",
-"Property Setter",
-"Custom Script",
-"Report",
-"Print Format"]
 
 # Includes in <head>
 # ------------------
@@ -26,6 +21,15 @@ fixtures = ["Custom Field",
 # include js, css files in header of web template
 # web_include_css = "/assets/ankit/css/ankit.css"
 # web_include_js = "/assets/ankit/js/ankit.js"
+
+# include js in page
+# page_js = {"page" : "public/js/file.js"}
+
+# include js in doctype views
+# doctype_js = {"doctype" : "public/js/doctype.js"}
+# doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
+# doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
 # Home Pages
 # ----------
@@ -83,12 +87,6 @@ fixtures = ["Custom Field",
 #	}
 # }
 
-doc_events = {
-       "Sales Invoice": {
-                "validate": "ankit.api.set_total_in_words"
-             }
-}
-
 # Scheduled Tasks
 # ---------------
 
@@ -115,10 +113,17 @@ doc_events = {
 
 # before_tests = "ankit.install.before_tests"
 
-# Overriding Whitelisted Methods
+# Overriding Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
 # 	"frappe.desk.doctype.event.event.get_events": "ankit.event.get_events"
+# }
+#
+# each overriding function accepts a `data` argument;
+# generated from the base implementation of the doctype dashboard,
+# along with any modifications made in other Frappe apps
+# override_doctype_dashboards = {
+# 	"Task": "ankit.task.get_dashboard_data"
 # }
 
